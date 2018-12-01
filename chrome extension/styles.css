@@ -1,4 +1,8 @@
-.ingredient{
+<element data-status = "true">
+
+/* convert all ingredients as not owned*/
+.ingredients__text{
   color:#cc0000;
   background-color:#ffcccc;
+  }
 }

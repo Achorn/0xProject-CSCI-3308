@@ -1,0 +1,457 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.14
+-- Dumped by pg_dump version 9.5.14
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: recipes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.recipes (
+    id integer NOT NULL,
+    rname text NOT NULL,
+    ingredients text NOT NULL
+);
+
+
+ALTER TABLE public.recipes OWNER TO postgres;
+
+--
+-- Name: recipes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.recipes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.recipes_id_seq OWNER TO postgres;
+
+--
+-- Name: recipes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.recipes_id_seq OWNED BY public.recipes.id;
+
+
+--
+-- Name: recipetable; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.recipetable (
+    id integer NOT NULL,
+    recipeid integer NOT NULL,
+    recipename text,
+    ingredients text[],
+    instructions text
+);
+
+
+ALTER TABLE public.recipetable OWNER TO postgres;
+
+--
+-- Name: recipetable_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.recipetable_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.recipetable_id_seq OWNER TO postgres;
+
+--
+-- Name: recipetable_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.recipetable_id_seq OWNED BY public.recipetable.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: fjstinar
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    username text,
+    password text
+);
+
+
+ALTER TABLE public.users OWNER TO fjstinar;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: fjstinar
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO fjstinar;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: fjstinar
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.recipes ALTER COLUMN id SET DEFAULT nextval('public.recipes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.recipetable ALTER COLUMN id SET DEFAULT nextval('public.recipetable_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: fjstinar
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: recipes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.recipes (id, rname, ingredients) FROM stdin;
+240	dogshit	(crap,ass,bad)
+1993	sheet garam masala chicken	(ginger,,wholemilk greek yogurt,,lemons,cayenne pepper,garam masala,,,,kosher salt,,,vegetable oil,onion,jalapeño,bunch cilantro,,,,,,,,,,,,,,,,,,,)
+1994	egg  merguez wraps	(eggs,wholemilk greek yogurt,fresh lemon juice,garlic clove,,kosher salt,extravirgin olive oil,merguez sausage,casings removed,lavash   flour ttillas,onion,,,dill pickles,crosswise,mint leaves,,,,,,,,,,,,,,,,,,,,)
+1995	chicy	(bacon,poached egg salad,parmesan,shallot,,sherry vinegar   wine vinegar,honey,extravirgin olive oil,,kosher salt,ground pepper,slab   bacon,s,long sprigs rosemary,mixed wild mushrooms (such as shiitake,maitake,oyster),woody stems removed,chicy (such as radicchio,escarole,frisée),leaves tn   s,eggs,,,,,,,,,,,,,,,,,,,,)
+1996	raspberry rugelach	(allpurpose flour,dusting,baking powder,granulated sugar,,kosher salt,,unsalted butter,s,cream cheese,,zest of,walnuts,raspberry  any other flav jam  marmalade,freezedried raspberries  strawberries,egg,beaten to blend,a spice mill  mtar  pestle,,,,,,,,,,,,,,,,,,,)
+1997	mtadella moments	(x  of focaccia,spreading,mtadella,peperoncini,quarte if,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+1998	chocolatetahini linzer cookies	(allpurpose flour,dutchprocess cocoa powder,baking powder,kosher salt,,granulated sugar,sticks,,egg,vanilla extract,sprinkling,white,milk,dark chocolate chips  wafers (disks,pistoles,fèves),tahini,assted   cookie ters,,,,,,,,,,,,,,,,,,,)
+1999	lemonpepper salami bites	(salami,hfuls of marcona almonds,lemon,ground  pepper,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2000	jerkspiced duck	(ducks,kosher salt,allspice berries,whole nutmegs,habanero chiles,stems removed,soy sauce,spiced rum,unseasoned rice vinegar,sugar,s ginger,,crushed,hoisin sauce,flour ttillas,napa cabbage,scallions,julienned  ginger,serrano chiles,mint sprigs,cilantro sprigs,,a raz blade  a spice mill  mtar  pestle,,,,,,,,,,,,,,,,,,,)
+2001	pimiento cheese crackers	(sharp cheddar,,allpurpose flour,kosher salt,cayenne pepper,jar pimiento peppers,unsalted butter,s,white   sesame seeds,,,,,,,,,,,,,,,,,,,,,,,,)
+2002	pineappleglazed ham	(pineapple,,rings,,rounds,cu smoked bonein ham   cu boneless ham,pineapple juice,apple cider vinegar,packed,hot sauce,,,,,,,,,,,,,,,,,,,,,,,,)
+2003	chicken  bacon choucroute with potato salad	(baby yukon gold potatoes,kosher salt,shallots,,extravirgin olive oil,white wine vinegar,dijon mustard,hot sauce,honey,tarragon leaves,extravirgin olive oil,,,kosher salt,slab bacon,,garlic cloves,lightly crushed,sprigs thyme,juniper berries,,rinsed,squeezed,white wine,sausages,such as kielbasa  bratwurst,,,,,,,,,,,,)
+2004	double pecan thumbprints	(pecan halves,granulated sugar,egg white,unsalted butter,,espresso powder,kosher salt,almond extract,allpurpose flour,kosher salt,baking powder,sticks,,granulated sugar,powde sugar,,egg yolk,vanilla extract  paste,,,,,,,,,,,,,,,,)
+2005	citrusdill gravlax	(bunch dill,sprigs,grapefruits,lemons,kosher salt,packed,cracked  peppercns,boneless side of salmon,bagels,bialys,pumpernickel  rye bread,cream cheese,onion,capers,;,,,,,,,,,,,,,,,,,,,,,,,)
+2006	slow roast beef	(new yk strip roast,prime,un,kosher salt,ground pepper,garlic cloves,,rosemary,extravirgin olive oil,,wholemilk greek yogurt,sour cream,prepa hseradish,lemon zest,,,,,,,,,,,,,,,,,,,,,,)
+2007	cold toddy	(,lemons,cinnamon sticks,ginger,,smashed,,earl grey tea bags,whole cloves,⅔  honey,rye whiskey,regular bitters,,,,,,,,,,,,,,,,,,,,,,)
+2008	oniondip potato chips	(onion powder,garlic powder,crushed  pepper flakes,kosher salt,bag kettlecooked salted potato chips,extravirgin olive oil,dill,lemon,ground  pepper,a spice mill,,,,,,,,,,,,,,,,,,,,,)
+2009	spiced chickpeas  greens frittata	(eggs,tender herbs (such as basil,cilantro,parsley),sour cream,crushed  pepper flakes,kosher salt,,extravirgin olive oil,,. cans chickpeas,rinsed,,curry powder,onion,,garlic cloves,,whole,bunch hardy greens (such as mustard,kale,swiss chard),ribs  stems removed,leaves tn   s,⅔  mayonnaise,,,,,,,,,,,,,,,,,,,)
+2010	trout toast with soft scrambled eggs	(eggs,kosher salt,,unsalted butter,,sourdough \tcountrystyle bread,crème fraîche  sour cream,,,skin removed,flesh    s,lemon,,ground  pepper,scallions,on a diagonal,dill,mature arugula,,extravirgin olive oil,,,,,,,,,,,,,,,,,,,)
+2011	steak  eggs with saucy beans	(hot smoked sish paprika,aleppostyle pepper,kosher salt,,ground  pepper,,each,,extravirgin olive oil,,shallots,,garlic cloves,,bunch cilantro,stems,leaves,. can o beans,,unsalted butter,limes,,eggs,,,,,,,,,,,,,,,,,,)
+2012	chizo  potato stew	(bacon,,sweet onions,,garlic cloves,,tomato paste,russet potatoes,,s,smoked sish chizo,rounds,halfmoons,button mushrooms,,lowsodium chicken broth,hot smoked sish paprika,cayenne pepper,kosher salt,sour cream,tn dill,ground  pepper,,,,,,,,,,,,,,,,,)
+2013	marinated manchego	(head of garlic,cloves,,quarte through stem end,crosswise,seeds removed,extravirgin olive oil,sprigs rosemary,kosher salt,young manchego cheese,s,,,,,,,,,,,,,,,,,,,,,,,,,)
+2014	spicy lightly pickled cucumbers	(,lengthwise  spears,white wine vinegar  unseasoned rice vinegar,sugar,crushed  pepper flakes,kosher salt,,dill,fresh lemon juice,,,,,,,,,,,,,,,,,,,,,,,,)
+2015	salted chocolate halva	(nonstick vegetable oil spray,tahini,kosher salt,white sesame seeds,,sugar,bittersweet chocolate,such as cnflowers  roses;,sea salt,a cy thermometer,,,,,,,,,,,,,,,,,,,,,,)
+2016	grapefruit bars with cied zest	(allpurpose flour,powde sugar,granulated sugar,kosher salt,stick,s,egg yolks,grapefruit,granulated sugar,,eggs,egg yolks,granulated sugar,cnstarch,from,from,from,from,vanilla extract  paste,kosher salt,stick,,s,;,,,,,,,,,,,)
+2017	snickerdoodle party cookies	(sticks,allpurpose flour,baking soda,kosher salt,ground cardamom,,ground cinnamon,,packed,granulated sugar,,eggs,vanilla extract  paste,sk bars,,cnflakes,lightly crushed,;,,,,,,,,,,,,,,,,,,)
+2018	vegan butternut squash soup	(onion,garlic cloves,ginger,a  hful of cilantro,with stems,,. can unsweetened coconut milk,,extravirgin olive oil,crushed  pepper flakes,kosher salt,,unsweetened coconut flakes,limes,,,,,,,,,,,,,,,,,,,,)
+2019	zebrastd shtbread cookies	(allpurpose flour,,kosher salt,,dutchprocess cocoa powder,sticks,,⅔  granulated sugar,powde sugar,egg yolk,vanilla extract  paste,egg,beaten to blend,any col,,,,,,,,,,,,,,,,,,,,,)
+2020	hot penicillin	(⅔  honey,ginger,,crosswise,blended scotch,fresh lemon juice,,s cied ginger,,,,,,,,,,,,,,,,,,,,,,,,,)
+2021	winter squash  onion flatbread	(active  yeast,allpurpose flour,surface,kosher salt,,extravirgin olive oil,,greasing,total,onion,,thin rounds,sprigs thyme,leaves stripped,ground  pepper,such as danish blue  cambozola,arugula,lemon zest,fresh lemon juice,,,,,,,,,,,,,,,,,,,)
+2022	cheesy applepepper scones	(sticks,s,sugar,granny smith apple,,ced,s,cake flour,kosher salt,baking powder,ground  pepper,baking soda,allpurpose flour,dusting,crumbled fresh goat cheese    sharp cheddar,cold heavy cream,brushing,,,,,,,,,,,,,,,,,,,,)
+2023	chilebutter roast chicken	(fennel seeds,hful of cilantro,leaves  stems separated,thai chile,stem removed,garlic cloves,,stick,,diamond crystal       mton kosher salt,,,shallots,,if,whole chickens,each    s,,,,,,,,,,,,,,,,,,,,,,)
+2024	shawarmaspiced beets with garlicky labneh	(cier seeds,cumin seeds,fennel seeds,cayenne pepper,ground cinnamon,kosher salt,ground pepper,golden beets,,tops,bulbs    lengthwise,fennel bulbs,fronds reserved,bulbs,extravirgin olive oil,head of garlic,crosswise,lemon    fresh lemon juice,shallots,,,honey,crushed  pepper flakes,labneh  wholemilk greek yogurt,mint leaves,parsley leaves with tender stems,a spice mill  mtar  pestle,,,,,,,,,,,,,)
+2025	turmeric rice salad with roasted brussels sprouts	(unsweetened coconut flakes,almonds,brussels sprouts,,grapeseed  canola oil,,kosher salt,ginger,,,coconut cream (from a . can,spooned from surface of a  can of unsweetened coconut milk),honey,ground  pepper,unseasoned rice vinegar,ground turmeric,from   uncooked,cilantro leaves with tender stems,dried unsweetened cranberries,mint leaves,scallions,,,,,,,,,,,,,,,)
+2026	naked apple tart	(sugar,kosher salt,allpurpose flour,dusting,stick,s,surface,stick,firm sweettart apples,apples,fresh lemon juice,sugar,pinch of kosher salt,crème fraîche,sour cream,whipped cream,;,a diameter tart  with removable bottom,with  without fluted edges,,,,,,,,,,,,,,,,,,,)
+2027	squash  caramelized onion tart	(whole wheat flour,kosher salt,allpurpose flour,surface,unsalted butter,s,extravirgin olive oil,,yellow onions,,kosher salt,garlic cloves,,dijon mustard,pinch of cayenne pepper,sharp cheddar  gruyère,butternut squash (a lengthwise half,),seeds removed,,lengthwise,seeds removed,sweet potato,onion,sprigs thyme,unsalted butter,sea salt,an   diameter fluted tart  with removable bottom  a diameter springm,,,,,,,,,,,,)
+2028	mapleroasted carrots	(carrots,tops  to,,unsalted butter,s,packed,pure maple syrup,crushed  pepper flakes,kosher salt,,,,,,,,,,,,,,,,,,,,,,,,,)
+2029	baked oatmeal with warm cranberryapple sauce	(unsalted butter  virgin coconut oil,melted,,oldfashioned oats,pecan halves,pepitas,unblanched  almonds,ground cinnamon,kosher salt,ground cardamom,whole milk,unsweetened almond milk,unsweetened coconut milk beverage,unsweetened oat milk,honey,egg,beaten to blend,vanilla extract,apples,a mix of varieties so you get lots of texture  flav,,s,fresh cranberries,honey,cinnamon stick,kosher salt,heavy cream,yogurt,;,,,,,,,,,,,,,)
+2030	nofail roast chicken with lemon  garlic	(lemon,head of garlic,stick,whole chicken,kosher salt,ground  pepper,,,,,,,,,,,,,,,,,,,,,,,,,)
+2031	stuffed rice balls	(oilpacked calabrian chiles from a jar,extravirgin olive oil,lemon zest,fresh lemon juice,garlic clove,,lowsodium homemade chicken stock  stebought broth,unsalted butter,,onion,,garlic cloves,,carnaroli  arbio rice,kosher salt,,white wine,,heavy cream,lemon zest,fresh lemon juice,ground  pepper,,lowmoisture mozzarella,s,jaese breadcrumbs,allpurpose flour,eggs,frying;,a deepfry thermometer,,,,,,,,)
+2032	vegan creamed spinach	(silken tofu,,grapeseed,vegetable,other neutral oil,scallions,,ginger,,,such as serrano  fresno,,garlic cloves,,,,tn   s,kosher salt,,,,,,,,,,,,,,,,,,,,,,,)
+2033	chicken under a brick in a hurry	(,thigh  drumstick;    total,kosher salt,ground pepper,extravirgin olive oil,oilpacked anchovy fillet,garlic clove,smashed,kosher salt,,parsley leaves with tender stems,extravirgin olive oil,sherry vinegar   wine vinegar,dijon mustard,crushed  pepper flakes,scallions,white  pale green parts only,,,,,,,,,,,,,,,,,,,,)
+2034	cauliflower bolognese	(shiitake mushrooms,stems removed,,flets,extravirgin olive oil,,unsalted butter,,onion,,garlic cloves,,chile,such as serrano  fresno,,sprigs rosemary,tomato paste,kosher salt,rigatoni,parsley,,,lemon,,,,,,,,,,,,,,,,,)
+2035	almond butter  jam quick bread	(,g,g,baking powder,ground cinnamon,kosher salt,,eggs,extravirgin olive oil,vanilla extract,almond butter,g,scant   milk  oat milk    apple cider vinegar,smooth fig jam,,almonds,raw sugar,,,,,,,,,,,,,,,,)
+2036	crispyskin salmon with misohoney sauce	(fresh ginger,white miso,vegetable oil,unseasoned rice vinegar,honey,sesame seeds,scallions,salmon fillets,kosher salt,,,,,,,,,,,,,,,,,,,,,,)
+2037	texas toast turkey swich	(ounce,inch rounds,extra virgin olive oil,ounces of brussel sprouts,,kosher salt,heinz® mayonnaise,of white pullman  country bread,stove top turkey stuffing,teaspoons apple cider vinegar,white cabbage,shded,carrot,thin matchsticks,of turkey breast,in thin,cranberry sauce,,,,,,,,,,,,,,,,,,,)
+2038	hot caesar spinach dip	(pound spinach,stems,tablespoons extra virgin olive oil,yellow onion,,garlic clove,minced,rustic of bread,tn   s,shded mozzarella,parmesan cheese,,heinz® mayonnaise,sour cream,tablespoon fresh lemon juice,teaspoons dijon mustard,teaspoon anchovy paste,ground  pepper,kosher salt,lettuce,radicchio,carrots,,,,,,,,,,,,,,,,,)
+2039	ina garten’s raspberry baked alaska	(,sugar,,such as tiptree,framboise liqueur,,raspberry sbet,such as ciao bella,vanilla ice cream,such as häagendazs,extra egg whites,sugar,vanilla extract,cream of tartar,kosher salt,,,,,,,,,,,,,,,,,,,)
+2040	greens with braised cetta  garlic	(extravirgin olive oil,cetta,s,garlic cloves,un,white wine,bunches kale,mustard greens,collard greens,stems removed,leaves,kosher salt,,,,,,,,,,,,,,,,,,,,,,,,,)
+2041	peanut butterpaprika cookies	(allpurpose flour,whole wheat flour,baking powder,kosher salt,baking soda,smoked paprika,,creamy peanut butter,sticks,,packed,granulated sugar,eggs,,vanilla extract,raw sugar,sea salt,,,,,,,,,,,,,,,,,)
+2042	ina garten's chocolate pecan scones	(bittersweet chocolate,,pecans,allpurpose flour,,dusting,baking powder,kosher salt,sugar,sprinkling,sticks,s,cold heavy cream,extra eggs,lightly beaten,egg wash,a diameter round cookie ter,,,,,,,,,,,,,,,,,,,,)
+2043	instant pot  bean soup	(slab   bacon,s,onion,carrots,,,garlic cloves,smashed,kosher salt,,,canned chipotle chiles in adobo,crosswise,liquid reserved,adobo sauce,dried egano,ground cumin,dried  beans,rinsed,fresh lime juice,sour cream,cn chips,cilantro leaves,,an instant pot  pressure cooker,,,,,,,,,,,,,,,,,,,)
+2044	e night salad with yogurt ranch	(garlic clove,lemons,fullfat yogurt,mayonnaise,dashes hot sauce,kosher salt,,ground  pepper,,a  hful of mixed herbs,such as dill,basil,cilantro,parsley,roasted,salted almonds,head of romaine   romaine hearts,extravirgin olive oil,,,,,,,,,,,,,,,,,,,,)
+2045	cheesy kale  mushroom strata	(sourdough  countrystyle bread,,extravirgin olive oil,crimini mushrooms,,garlic cloves,,kosher salt,,ground  pepper,,unsalted butter,,leeks,white  pale green parts only,lengthwise,crosswise,bunch curly kale,ribs  stems removed,leaves tn   s,eggs,whole grain dijon mustard,whole milk,gruyère  comté cheese,,,parmesan,,,,,,,,,,,,,,,,,,,)
+2046	rice bowls with  cod	(eggs,ghee  extravirgin olive oil,garlic cloves,crushed,,basmati rice,rinsed,well,cod fillets,kosher salt,wholemilk greek yogurt,talk celery,on a bias,cilantro leaves with tender stems,,,,,,,,,,,,,,,,,,,,,)
+2047	crispy sheet meatballs with salsa verde	(garlic cloves,,packed mixed herbs,such as parsley,cilantro,basil,dill,,capers,walnuts,egg,paprika,kosher salt,,extravirgin olive oil,,jaese breadcrumbs,% fat,lemon,ground  pepper,,,,,,,,,,,,,,,,,,,)
+2048	coconutginger chickpea soup	(extravirgin olive oil,mustard seeds,ground turmeric,pinch of cayenne pepper,kosher salt,shallot,,golden raisins,cilantro stems,fresh lime juice,extravirgin olive oil,kosher salt,ground pepper,virgin coconut oil,onions,,,heads of garlic,top third removed,ginger,,,curry powder,cayenne pepper,dried chickpeas,soaked overnight,,. cans unsweetened coconut milk,split  lentils,stebought unsweetened toasted coconut flakes,fresno  serrano chiles,;,,,,,,,,,,)
+2049	hunter’s stew	(doublesmoked slab bacon,cubes,kielbasa sausage,on a diagonal,garlic cloves,crushed,double concentrated tomato paste,paprika,ground cier,ground cumin,cayenne pepper,onions,,white wine,kosher salt,,ced,,carrots,,,pink lady apple,ced,on the  holes of a box grater,yukon gold potatoes,,s,not ;,homemade beef stock  water,dill sprigs,dark rye  pumpernickel bread,,,,,,,,,,,,,,)
+2050	glutenfree apple  oat muffins	(eggs,lemon zest,fresh lemon juice,⅔     pure maple syrup,⅔     virgin coconut oil,melted,g,g,g,baking powder,kosher salt,,,g,,g,,,,,,,,,,,,,,,,,,,)
+2051	kimchi toast	(cream cheese,,,scallions,on a diagonal,cilantro leaves with tender stems,lime,kosher salt,countrystyle bread,grilled  toasted,,,,,,,,,,,,,,,,,,,,,,,,)
+2052	stirfried brussels sprouts	(walnuts,brussels sprouts,extravirgin olive oil,kosher salt,ground pepper,lemon,walnut oil    sesame oil,,,,,,,,,,,,,,,,,,,,,,,,,)
+2053	burnished potato nuggets	(russet potatoes,,s,kosher salt,extravirgin olive oil,vegetable oil,garlic cloves,lightly crushed,long sprigs rosemary,,,,,,,,,,,,,,,,,,,,,,,,,)
+2054	cranberry sauce with   cinnamon	(navel,seeds removed,,frozen,sugar,unsalted butter,long cinnamon stick,ground allspice,pinch of kosher salt,,,,,,,,,,,,,,,,,,,,,,,,)
+2055	fall spritz	(.  averna amaro,such as isastegi sagardo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2056	glazed   apple tart	(almonds,sweettart apples (such as pink lady,honeycrisp,winesap),lemon,,pure maple syrup,bry,apple,vanilla extract,pinch of kosher salt,raw sugar,,allpurpose flour,dusting,sht puff pastry,egg,beaten to blend,,,,,,,,,,,,,,,,,,,,)
+2057	sht puff pastry	(sugar,kosher salt,allpurpose flour,surface,sticks,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2058	classic herb  fennel stuffing	(loaf countrystyle bread,tn   s,extravirgin olive oil,onions,,fennel bulb,,celery stalks,,white wine,sticks,parsley,sage,rosemary,thyme,kosher salt,ground  pepper,eggs,lowsodium chicken broth,,,,,,,,,,,,,,,,)
+2059	rubbed turkey breast	(cier seeds,fennel seeds,peppercns,diamond crystal    mton kosher salt,light brown sugar,,bonein turkey breast,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2060	buttermilk cnbread	(nonstick vegetable oil spray,allpurpose flour,grind cnmeal,sugar,baking powder,kosher salt,ground  pepper,eggs,buttermilk,stick,melted,slightly cooled,,,,,,,,,,,,,,,,,,,,,)
+2061	makeahead mashed potatoes	(yukon gold potatoes,,kosher salt,⅔  heavy cream,⅔  whole milk,sticks,s,sour cream,ground  pepper,a potato ricer  food mill fitted with fine disk,,,,,,,,,,,,,,,,,,,,,,,)
+2062	umami gravy	(,reserved from rubbed roast turkey,,shiitake mushrooms,onion,,a  hful of rosemary sprigs,thyme sprigs,bay leaves,white wine,,unsalted butter,wondra  allpurpose flour,soy sauce,kosher salt,ground pepper,,,,,,,,,,,,,,,,,,,,)
+2063	cnbread stuffing with sausage  collard greens	(buttermilk cnbread,unsalted butter,,,extravirgin olive oil,hot  sweet italian sausage,casings removed,onion,,celery stalks,,garlic cloves,,rosemary,kosher salt,crushed  pepper flakes,bunches collard greens,stems  ribs removed,leaves tn     s,heavy cream,lowsodium chicken broth,,eggs,beaten to blend,,,,,,,,,,,,,,,,,)
+2064	radicchio salad with sour cream ranch	(sour cream,wholemilk greek yogurt,sherry vinegar  apple cider vinegar,garlic cloves,,crushed,honey,extravirgin olive oil,,kosher salt,scallions,,jaese breadcrumbs,lemon,radicchio,castelfranco,leaves separated,,,,,,,,,,,,,,,,,,,,)
+2065	rubbed roast turkey	(diamond crystal       mton kosher salt,light brown sugar,turkey,neck reserved  gravy,giblets discarded,,sticks,,,sherry vinegar   wine vinegar,honey,wcestershire sauce,sprigs rosemary,garlic cloves,crushed,x strips  zest,,,,,,,,,,,,,,,,,,,,,)
+2066	coconutappleginger dal	(virgin coconut oil,cayenne pepper,ground cumin,ground turmeric,onion,,garlic cloves,,ginger,,,un,on the  holes of a box grater,lentils,. can coconut milk,fresh lime juice,kosher salt,ground pepper,yogurt,cilantro leaves,,,,,,,,,,,,,,,,,,,)
+2067	chicken soup with char cabbage	(from a stebought rotisserie  homemade roast chicken,shded skinless roast chicken meat,shiitake mushrooms,stems reserved,caps tn in half,garlic cloves,crushed,kosher salt,,extravirgin olive oil,,ced,ribbons,ground  pepper,;,,,,,,,,,,,,,,,,,,,,,,,)
+2068	shaved carrots with char dates	(purple   carrots,,,shaved on a moline      rounds,kosher salt,blood s    grapefruits,extravirgin olive oil,fresh lime juice,unseasoned rice vinegar,medjool dates,,,,,,,,,,,,,,,,,,,,,,,,)
+2069	spicy cranberry sauce	(unsalted butter,shallot,,jalapeños,seeds removed from  chile,both chiles,frozen,⅔  honey,kosher salt,lime zest,fresh lime juice,,,,,,,,,,,,,,,,,,,,,,,)
+2070	shingled sweet potatoes with harissa	(⅔     extravirgin olive oil,⅔     harissa paste,white wine vinegar,,sweet potatoes,,kosher salt,raw pistachios,sesame seeds,fennel seeds,a spice mill  mtar  pestle,,,,,,,,,,,,,,,,,,,,,,)
+2071	toasted pecan tte with butterscotch topping	(sticks,,,,allpurpose flour,,pecan halves,baking powder,kosher salt,,granulated sugar,zest,eggs,,rum,,packed,heavy cream,,a diameter springm,,,,,,,,,,,,,,,,,,,)
+2072	butternut squash tarte tatin	(unsalted butter,,,,granulated sugar,,kosher salt,,fresh lemon juice,vanilla extract,sht puff pastry,surface,heavy cream,powde sugar,ground cinnamon,,,,,,,,,,,,,,,,,,,,)
+2073	little gem salad with pistachios  herbs	(heads of little gem lettuce,lengthwise,sticks,kosher salt,egg yolk,raw pistachios,,,fresh lemon juice,,ground  pepper,chervil,chives,,,,,,,,,,,,,,,,,,,,,)
+2074	cranberryfig sauce	(unsalted butter,shallot,,rosemary,frozen,dried turkish figs,,packed,balsamic vinegar,kosher salt,,pinch of crushed  pepper flakes,,,,,,,,,,,,,,,,,,,,,,)
+2075	wild rice dressing	(pecans,wild rice,kosher salt,wine vinegar,fresh  juice,honey,garlic clove,crushed,extravirgin olive oil,,,leeks,white  pale green parts only,tough outer layer removed,lengthwise,crosswise,mushrooms (such as maitake,chanterelle,oyster),tn     s,ground  pepper,thyme,chives,,,,,,,,,,,,,,,,,,)
+2076	pasta with sausage  arugula	(onions,,fennel bulb,,extravirgin olive oil,,kosher salt,ground pepper,links,casings removed,gemelli,casarecce,other  pasta,lemon zest,fresh lemon juice,baby arugula,,,,,,,,,,,,,,,,,,,,,,)
+2077	cranberry linzer tart	(frozen,granulated sugar,ginger,unsalted butter,pinch of kosher salt,lemon zest,walnuts,granulated sugar,lemon zest,ground cinnamon,kosher salt,ground cloves,nutmeg,baking powder,allpurpose flour,dusting,unsalted butter,s,eggs,,a diameter fluted tart  with removable bottom,,,,,,,,,,,,)
+2078	glazed shallots with chile  thyme	(unsalted butter,shallots,,if,kosher salt,sherry vinegar   wine vinegar,sprigs thyme,thyme leaves,fresno chiles,lengthwise,seeds removed,sugar,,,,,,,,,,,,,,,,,,,,,,,,)
+2079	broccoli caesar	(,garlic clove,,fresh lemon juice,dijon mustard,kosher salt,egg yolk    mayonnaise,extravirgin olive oil,parmesan,shaved,,head of savoy  napa cabbage,,cracked  pepper,,,,,,,,,,,,,,,,,,,)
+2080	parsnip confit with pickled currants	(parsnips,,lengthwise,quarte if,woody ce removed if,heads of garlic,crosswise,ginger,,lengthwise  ⅛,sprigs rosemary,,rosemary leaves,kosher salt,extravirgin olive oil,dried currants,sugar,apple cider vinegar,aleppostyle pepper,,,,,,,,,,,,,,,,,,,,,)
+2081	citrus shrimp rice bowls	(fresh  juice,sriracha,honey,soy sauce  tamari soy sauce,vegetable oil,fresh lime juice,jumbo   shrimp,,,kosher salt,s,such as cara cara  valencia,persian cucumbers,quarte lengthwise,crosswise,scallions,,,,,,,,,,,,,,,,,,,,,)
+2082	basically  bean soup	(onion,carrot,garlic cloves,extravirgin olive oil,wine vinegar,tin chipotle chiles in adobo,hot sauce,not soaked,dried egano,kosher salt,,limes,wholemilk greek yogurt,cilantro,avocado,crushed fritos,onion,lime,;,,,,,,,,,,,,,,,,,,,)
+2083	pumpkin bread with salted maple butter	(nonstick vegetable oil spray,allpurpose flour,ground cinnamon,kosher salt,baking powder,baking soda,nutmeg,⅛  ground cloves,eggs,can pumpkin purée,from  one   fresh ginger,sugar,extravirgin olive oil,raw pumpkin seeds,,,pure maple syrup,sea salt,,,,,,,,,,,,,,,)
+2084	grain salad with pickled onions  herbs	(head of broccoli,kosher salt,bunch of tuscan kale,from one,raw pistachios,onion,,garlic clove,,extravirgin olive oil,fresh lemon juice,capers,crushed  pepper flakes,fennel seeds,ground,ground  pepper,basil leaves,,cilantro leaves with tender stems,,mint leaves,,,,,,,,,,,,,,,,)
+2085	lemon pound cake	(sticks,,,lemons,granulated sugar,eggs,allpurpose flour,baking powder,kosher salt,whole milk,powde sugar,,,,,,,,,,,,,,,,,,,,,,)
+2086	applecheddar pie	(allpurpose flour,granulated sugar,kosher salt,sharp cheddar cheese,,sticks,s,whiskey,,,ced,,packed,whiskey,lemon zest,fresh lemon juice,ground cinnamon,ground allspice,ground cloves,kosher salt,unsalted butter,cnstarch,surface,egg,tbsp demerara sugar,total,not deep dish,,,,,,,,,)
+2087	frozen greek yogurt out pie	(stardsize ones;,oldfashioned oats,dutchprocess cocoa powder,light brown sugar,kosher salt,unsalted butter,; see note below,bittersweet chocolate,,extravirgin olive oil,,wholemilk greek yogurt,,kosher salt,,egg whites,packed,,;,a diameter stard pie dish,,,,,,,,,,,,,,,,,)
+2088	curry leaf popcn chicken	(seeds,cier seeds,cumin seeds,whole  peppercns,buttermilk,fresh lime juice,serrano chiles,,scallions,roots removed,,fresh ginger,,,garlic cloves,curry leaves,fresh,,kosher salt,cayenne pepper,,skinless,boneless chicken breasts,,s,allpurpose flour,baking powder,baking soda,frying;,green thai chiles,seeded if desi,a spice mill  mtar  pestle,,,,,,,,,,,)
+2089	coconutcurry braised chicken	(,total,kosher salt,,onions,garlic cloves,fresh ginger,curry powder,such as garam masala,. can unsweetened coconut milk,sweet potatoes,,unsweetened coconut flakes,limes,a  hful of cilantro,,,,,,,,,,,,,,,,,,,,)
+2090	brothy seafood chowder	(extravirgin olive oil,fish bones,rinsed,onion,un,quarte,stalks celery,,leek,dark green parts,rinsed,white parts    rounds,rinsed,reserved  stew,dried chile de árbol    crushed  pepper flakes,garlic clove,smashed,thyme sprigs,,white wine  sake,fennel seeds,yukon gold potatoes,quarte,kosher salt,fennel bulb,lengthwise,crosswise,fronds reserved,boneless,such as cod,s,sun gold tomatoes,,ground  pepper,,,,,,,,,,,,,)
+2091	roasted brussels sprouts with warm honey glaze	(brussels sprouts,,,extravirgin olive oil,kosher salt,,ground  pepper,honey,sherry vinegar   wine vinegar,,unsalted butter,scallions,on a diagonal,lemon zest,,,,,,,,,,,,,,,,,,,,,)
+2092	beef stirfry with green beans  tomatoes	(boneless beef sht ribs,kosher salt,lemongrass stalks,tough outer leaves  stems,serrano  fresno chile  jalapeño,fresh ginger,,garlic cloves,,light brown  granulated sugar,green beans  snow peas,ears cn,kernels  from cobs,extravirgin olive oil,,sun gold  cherry tomatoes,basil leaves,,,,,,,,,,,,,,,,,,,)
+2093	pasta al limone	(lemon,spaghetti  other long pasta,kosher salt,heavy cream,unsalted butter,,ground  pepper,,,,,,,,,,,,,,,,,,,,,,,,)
+2094	multigrain chocolate chip cookies	(allpurpose flour,whole wheat flour,baking powder,kosher salt,baking soda,bittersweet chocolate,,oldfashioned oats,pepitas,polenta  quinoa,millet,poppy seeds,flaxseed,sticks,,packed,granulated sugar,powde sugar,molasses,egg,egg yolks,vanilla extract,,,,,,,,,,,,,)
+2095	crispy roasted broccoli with tahini sauce	(head of broccoli with stem,extravirgin olive oil,kosher salt,lemons,garlic clove,tahini,raw sesame seeds,,,,,,,,,,,,,,,,,,,,,,,,)
+2096	warm eggplant salad with walnuts	(walnuts,from   lemon,ground cinnamon,crushed  pepper flakes,extravirgin olive oil,total,lengthwise,crosswise   sections,onion,,mint leaves,tn if,kosher salt,date syrup,,,,,,,,,,,,,,,,,,,,,)
+2097	chrissy teigen’s thai soygarlic fried ribs	(ribs,separated  individual ribs,soy sauce,garlic cloves,,ground  pepper,frying;   qt.,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2098	chrissy teigen’s cheesy chicken milanese	(skinless,each,kosher salt,ground pepper,cayenne pepper,allpurpose flour,chicken,eggs,dried breadcrumbs,jaese breadcrumbs,,,frying,baby arugula,cherry tomatoes,quarte,a chunk of parmigianeggiano cheese,,,,,,,,,,,,,,,,,,,)
+2099	silky peanut butter dressing	(creamy natural peanut butter,fresh lime,,lemon juice,silken  soft tofu,soy sauce,honey  maple syrup,,ginger,,,kosher salt,pepitas,unsalted roasted peanuts,hemp seeds,;,,,,,,,,,,,,,,,,,,,,,,,)
+2100	swiss meringue buttercream	(g,g,g,g,s,,vanilla extract,kosher salt,vanilla bean,split lengthwise;   bittersweet chocolate,melted,cooled but still liquid;    espresso,cooled,,,,,,,,,,,,,,,,,,,,,,,,)
+2101	raw butternut squash ribbon salad	(fresno chile,seeds removed,,garlic cloves,,zest,fresh  juice,white wine vinegar,extravirgin olive oil,kosher salt,,,unsalted,pepitas,,,,,,,,,,,,,,,,,,,,,,)
+2102	herby garlic confit	(heads of garlic,cloves separated,un,a  hful of thyme sprigs,rosemary sprigs,bay leaves,extravirgin olive oil,,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2103	garlicchile vinegar	(green thai chiles,garlic cloves,,ginger,,,distilled white vinegar,sugar,kosher salt,a heatproof qt. jar,,,,,,,,,,,,,,,,,,,,,,,,)
+2104	butternut squash steaks with brown buttersage sauce	(,one with a long  neck,extravirgin olive oil,unsalted butter,s,sage leaves,garlic cloves,crushed,fresh lemon juice,kosher salt,ground pepper,,,,,,,,,,,,,,,,,,,,,,,,)
+2105	roast sausage  fennel with	(fennel bulbs,fronds reserved,bulbs  through root end,lengthwise,onion,through root end,lengthwise,sprigs rosemary,extravirgin olive oil,,,kosher salt,ground pepper,total,navel,wine vinegar,sea salt,,,,,,,,,,,,,,,,,,,,,,)
+2106	tiramisù layer cake with mascarpone mousse	(g,g,cooled,unflaved powde gelatin,g,g,,g,g,vanilla extract,kosher salt,g,vanilla genoise,espresso swiss meringue buttercream,,,,,,,,,,,,,,,,,,,)
+2107	herby pasta with garlic  green olives	(pappardelle  other wide noodle,kosher salt,extravirgin olive oil,,garlic cloves,smashed,parsley,pitted castelvetrano olives,crushed  pepper flakes,unsalted butter,s,basil leaves,fresh lemon juice,,,,,,,,,,,,,,,,,,,,,)
+2108	the garlickiest fried rice	(garlic cloves,,grapeseed  vegetable oil,kosher salt,ginger,,,egg,beaten to blend,cooked shtgrain rice,toasted sesame oil,scallions,on a diagonal,cilantro,toasted sesame seeds,,,,,,,,,,,,,,,,,,,,,)
+2109	oxtail   wine stew	(extravirgin olive oil,jaese breadcrumbs,kosher salt,ground pepper,chives,thyme leaves,beet,golden,,,knob hseradish,,wine vinegar,honey,kosher salt,ground pepper,oxtails  beef sht ribs,segments,,kosher salt,ground pepper,extravirgin olive oil,leeks,white  pale green parts only,lengthwise,then  crosswise   s,celery stalks,,heads of garlic,top third removed,tomato paste,ml bottle  wine,bunch thyme,stems  together with kitchen twine,parsley leaves,parmesan,;,,,,,,,,,,,)
+2110	fermented garlic honey	(head,crushed,raw honey,a heatproof qt. jar,,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2111	ham hock  white bean stew	(shallots,rings,vegetable oil,kosher salt,sour cream,dijon mustard,honey,ground  pepper,extravirgin olive oil,onions,,through root ends,heads of garlic,top third removed,carrots,,,white wine,,bunch of thyme,stems  together with kitchen twine,cona  gigante beans,soaked overnight,,kosher salt,ground pepper,;,,,,,,,,,,,,,,)
+2112	cucumbers with ajo blanco sauce	(,kosher salt,sherry vinegar   wine vinegar,,blanched almonds,,garlic clove,,extravirgin olive oil,sea salt,,,,,,,,,,,,,,,,,,,,,,,,)
+2113	est layer cake with cherry preserves	(g,g,,,g,,kosher salt,g,g,g,chocolate genoise,⅔  cherry preserves,chocolate swiss meringue buttercream,,,,,,,,,,,,,,,,,,,,)
+2114	slowcooked chicken stew with kale	(reserved from stew; see below,garlic clove,,parsley,lemon zest,kosher salt,ground pepper,lemon,ganic  unwaxed,rounds,rounds   quarters,extravirgin olive oil,pinch of sugar,kosher salt,ground pepper,,,,kosher salt,ground pepper,,,shallots,,quarte lengthwise,heads of garlic,top third removed,white wine,bunch parsley,stems  together with kitchen twine,bay leaves,tn curly kale leaves,;,,,,,,,,,,,,)
+2115	butternut squash  chizo hash	(,fresh chizo,casings removed,of a  squash,,,onion,,kosher salt,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2116	genoise	(g,nonstick vegetable oil spray,g,,g,kosher salt,vanilla extract,g,g,g,,,,,,,,,,,,,,,,,,,,,,,)
+2117	broccoli  garlicricotta toasts with hot honey	(baguette,,extravirgin olive oil,,head of broccoli,stem,stem  flets    s,head of garlic,cloves separated,kosher salt,honey,white wine vinegar,crushed  pepper flakes,fresh ricotta,ground  pepper,,,,,,,,,,,,,,,,,,,,,)
+2118	baked pasta alla nma	(globe eggplant,,s,s cherry tomatoes,garlic cloves,smashed,extravirgin olive oil,skillet,crushed  pepper flakes,sprinkling,kosher salt,eggs,tomato paste,parmesan,,spaghetti,capers,tn basil,a few whole leaves,,,,,,,,,,,,,,,,,,,)
+2119	butternut squash	(coconut,ginger muffins,eggs,unsalted butter,melted,⅔  buttermilk,from one,packed,allpurpose flour,baking powder,baking soda,ground cinnamon,kosher salt,on  holes of box grater,from   of a  squash),unsweetened shded coconut,pecans,,,,,,,,,,,,,,,,,,)
+2120	silky pk  cumin stew	(head of  cabbage,,apple cider vinegar,sugar,kosher salt,ground pepper,avocados,un,,pits removed,lime,kosher salt,,skinless,boston butt,,kosher salt,ground pepper,extravirgin olive oil,onions,,,heads of garlic,top third removed,finegrind cnmeal,dried chiles de árbol,cumin seeds,apple cider vinegar,crushed cn nuts,chicharrones,hot sauce,;,,,,,,,,,,,,,)
+2121	vanilla layer cake with mango curd	(g,pinch of kosher salt,vanilla bean,lengthwise,g,,heaping,puréed until smooth,g,kosher salt,g,,g,g,g,s,g,vanilla genoise,vanilla swiss meringue buttercream,,,,,,,,,,,,,,,,)
+2122	warmspiced saucy lamb stew	(head of cauliflower,extravirgin olive oil,kosher salt,ground pepper,wholemilk greek yogurt,mint,fresh lemon juice,kosher salt,ground pepper,,,kosher salt,ground pepper,extravirgin olive oil,onions,,,heads of garlic,top third removed,stick cinnamon    ground cinnamon,cier seeds,crushed,harissa paste,tn pitted castelvetrano olives,mint leaves,;,,,,,,,,,,,,,,,)
+2123	roast chicken legs with lots of garlic	(thigh  drumstick;    total,kosher salt,heads of garlic,crosswise,lemon,rounds,seeds removed,such as fresno,quarte lengthwise,seeds removed if desi,bay leaves   sprigs thyme,ground  pepper,extravirgin olive oil,countrystyle bread,,,,,,,,,,,,,,,,,,,,,,,)
+2124	slowcooked halibut with garlic cream  fennel	(fennel bulbs,fronds reserved,bulbs,garlic cloves,,heavy cream,kosher salt,;,halibut fillet,,lemon,extravirgin olive oil,ground  pepper,,,,,,,,,,,,,,,,,,,,,,,)
+2125	oven polenta with roasted mushrooms  thyme	(mixed mushrooms (such as crimini,shiitake,oyster,maitake),tn   s,sprigs thyme,leaves,garlic cloves,smashed,kosher salt,ground pepper,extravirgin olive oil,unsalted butter,polenta,parmesan,,,wine vinegar,sea salt,,,,,,,,,,,,,,,,,,,,,)
+2126	roast fish with cannellini beans  green olives	(sprigs egano,white kidney,rinsed,castelvetrano olives,pitted,tn,kosher salt,whole skinless whitefish fillet (such as cod,haddock,halibut),shallots,rings,fresno chile,rings,lemons,,extravirgin olive oil,,,,,,,,,,,,,,,,,,,,,,)
+2127	steak salad with shallot vinaigrette	(,kosher salt,ground  pepper,shallot,dijon mustard,wine vinegar,extravirgin olive oil,,cherry tomatoes,persian cucumbers,head of butter lettuce,unsalted butter,sprigs thyme,avocado,,,,,,,,,,,,,,,,,,)
+2128	basically spaghetti pomodo	(kosher salt,,can whole  tomatoes,garlic cloves,extravirgin olive oil,,pinch of crushed  pepper flakes,,basil sprigs,leaves,spaghetti,parmesan,,,unsalted butter,,,,,,,,,,,,,,,,,,,,,,)
+2129	herby pizza with carrot top pesto	(sugar,active  yeast,bread  allpurpose flour,extravirgin olive oil,,kosher salt,parmesan,garlic clove,,fresh lime juice,basil leaves,,tender carrot tops,,extravirgin olive oil,,mint leaves,,kosher salt,carrots,on a moline,,serrano chile,,,,,,,,,,,,,,,,,,)
+2130	burst cherry tomato pasta	(extravirgin olive oil,,garlic cloves,smashed,,crushed  pepper flakes,sprigs basil,basil leaves,tn if,kosher salt,,,camelle  other tube pasta,,,,,,,,,,,,,,,,,,,,,,,,)
+2159	lemon cake with fruit	(sticks,,,allpurpose flour,,baking powder,kosher salt,lemon,⅔     granulated sugar,eggs,egg yolk,pear,,,pears  apples,,stone fruit,,blueberries,berries,,,,,,,,,,,,,,,,,,,,,)
+2131	cottage cheese	(gallon whole milk,not ultrapasteurized  ideally locally sourced,⅛  liquid animal rennet,kosher salt,,,⅔  buttermilk,heavy cream,rennet is an enzyme found in animals’ stomachs used to coagulate milk.,cheesecloth,,,,,,,,,,,,,,,,,,,,,,,,)
+2132	caramelized zucchini flatbread	(pizza dough,,onion,extravirgin olive oil,,kosher salt,lemon,fresh ricotta,,garlic clove,mint leaves,crushed  pepper flakes,,,,,,,,,,,,,,,,,,,,)
+2133	caramelized banana pudding	(sugar,,ground cinnamon,,yellow but not yet browning,cnstarch,kosher salt,halfhalf,,unsalted butter,vanilla extract,sour cream,graham crackers,,,,,,,,,,,,,,,,,,,,,)
+2134	grilled chicken swich with caesarish dressing	(dijon mustard,wcestershire sauce,garlic cloves,,fresh lemon juice,ground  pepper,,extravirgin olive oil,grill,mayonnaise,,kosher salt,skinless,total,brioche buns,split,fennel bulb,crosswise,fronds reserved,basil leaves,,head little gem lettuce,tomato,,,,,,,,,,,,,,,,)
+2135	ba's best pesto	(pine nuts,parmesan,,garlic cloves,,bunches,extravirgin olive oil,kosher salt,,,,,,,,,,,,,,,,,,,,,,,,,)
+2136	cn salsa	(ears of cn,poblano chile,jalapeño  fresno chile,onion,kosher salt,,beefsteak tomato,bunch cilantro,lime,,,,,,,,,,,,,,,,,,,,,,,)
+2137	cashew yogurt	(raw cashews,soaked overnight,,lemon juice,kosher salt,nectar,,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2138	eggplant with cashew butter  pickled peppers	(distilled white vinegar,sugar,kosher salt,mini bell peppers,seeds  ribs removed,crosswise,mixed chiles (such as serrano,fresno,jalapeño),crosswise,shallot,,garlic cloves,smashed,cashews,extravirgin olive oil,vegetable oil,sugar,kosher salt,fresh lime juice,fish sauce,vegetable oil,eggplants,fairy tale,,if,kosher salt,shallot,,fresh lime juice,basil leaves,cilantro leaves with tender stems,chives,,,,,,,,,)
+2139	freekeh salad with parsley  cherry tomatoes	(whole freekeh,rinsed,kosher salt,fresh lemon juice,extravirgin olive oil,pomegranate molasses,onion,,parsley,quarte cherry tomatoes,,,pomegranate molasses can be found at middle eastern markets,supermarkets,online.,,,,,,,,,,,,,,,,,,,,,)
+2140	spaghetti with lobster pomodo	(kosher salt,live lobsters,extravirgin olive oil,ghee  unsalted butter,onion,,garlic cloves,,sprigs basil,can whole  san marzano tomatoes,spaghetti,nduja,s,,,,,,,,,,,,,,,,,,,,,)
+2141	cinnamontomato jam	(can whole san marzano tomatoes,extravirgin olive oil,white onion,,garlic cloves,,tomato paste,cinnamon sticks,sugar,toasted sesame seeds,distilled white vinegar,kosher salt,,,,,,,,,,,,,,,,,,,,,)
+2142	curry paste	(peppercns,cier seeds,lemongrass stalks,,tough outer layers removed,crosswise,galangal,dried thai chiles,tn     s,asian shallots    shallot,,garlic cloves,cilantro roots       cilantro stems,,,thai,a  mtar  pestle,prik haeng chiles can be found at most asian markets  will often be labeled as dried thai chiles  just dried chiles. prik chee fah chiles are much harder to source; the next best equivalent is mexican puya chiles.,,,,,,,,,,,,,,,,,,,)
+2143	slowcooked green beans with harissa  cumin	(green  other snap beans,,head of garlic,extravirgin olive oil,harissa paste,cumin seeds,kosher salt,sherry vinegar,,,,,,,,,,,,,,,,,,,,,,,,)
+2144	swiss chardtahini dip	(,⅔  extravirgin olive oil,,,garlic cloves,,tahini,fresh lemon juice,kosher salt,,,,,,,,,,,,,,,,,,,,,,,,,)
+2145	slowcooked cherry tomatoes with cier  rosemary	(cherry tomatoes,head of garlic,sprigs rosemary,extravirgin olive oil,cier seeds,kosher salt,wine vinegar,,,,,,,,,,,,,,,,,,,,,,,,)
+2146	cold udon with grapefruit ponzu	(grapefruit,,lemon,,such as fresno,seeds removed,,ginger,,,unseasoned rice vinegar,soy sauce,sugar,s cherry tomatoes,garlic clove,,extravirgin olive oil,a pinch of kosher salt,frozen udon noodles,persian cucumbers,,on a diagonal,cilantro sprigs,crumbled ni,,,,,,,,,,,,,,,,,,)
+2147	slowcooked scallions with ginger  chile	(scallions,roots,head of garlic,ginger,,crosswise,dried chiles de árbol    crushed  pepper flakes,extravirgin olive oil,kosher salt,unseasoned rice vinegar,,,,,,,,,,,,,,,,,,,,,,,,)
+2148	napa cabbage salad with parmesan  pistachios	(napa cabbage,tough outer leaves removed,,leaves tn   s,sea salt,,raw pistachios,extravirgin olive oil;,ground  pepper,,sprig thyme,zest,sugar,apple cider vinegar,honey,wildflower,parsley leaves with tender stems,chives,parmesan,shaved,,,,,,,,,,,,,,,,,,,)
+2149	misoglazed eggplant grain bowls with basil	(,lengthwise,extravirgin olive oil,,kosher salt,ginger,,,white miso,tamari soy sauce  regular soy sauce,unseasoned rice vinegar,sugar,fresh lime juice,persian cucumbers,rounds,scallions,crosswise   s,then lengthwise  matchsticks,mixed cooked whole grains (such as barley,freekeh,farro,quinoa),basil leaves,,,,,,,,,,,,,,,,,,)
+2150	salad	(,fresh lemon juice,honey,extravirgin olive oil,,kosher salt,ground pepper,brussels sprouts,,,unsalted butter,sprigs thyme,sprig rosemary,garlic clove,lightly crushed,white balsamic vinegar,wine vinegar,dijon mustard,fresh lemon juice,kosher salt,garlic clove,crushed  pepper flakes,dried egano,⅔  extravirgin olive oil,. can chickpeas,rinsed,kosher salt,scallions,,fennel salami,⅛,,caciocavallo cheese,castelvetrano olives,pitted,dill,tn mixed radicchio leaves,tn little gem  romaine lettuce,ricotta salata,pomegranate seeds,)
+2151	ovenbarbecued chicken	(s,,kosher salt,,light brown sugar,ground cumin,ground  pepper,,sweet paprika,garlic powder,onions,extravirgin olive oil,apple cider vinegar,stebought barbecue sauce,,,,,,,,,,,,,,,,,,,,)
+2152	custard tart with cream  fresh fruit	(unsalted butter,,sugar;,egg yolks,eggs,⅔  cnstarch,kosher salt,whole milk,heavy cream,,vanilla bean,split lengthwise,vanilla extract  paste,stone fruit,,blueberries  berries,,,,,,,,,,,,,,,,,,,,,)
+2153	sea scallops with chizo  cn	(ears of cn,husked,extravirgin olive oil,,smoked sish chizo,,scallions,white  pale green parts only,,garlic cloves,,depending on heat,,kosher salt,,buttermilk,cilantro,,side muscle removed,,unsalted butter,lime,,,,,,,,,,,,,,,,,,,,)
+2154	slowcooked bell peppers with bay leaves  egano	(any col bell peppers,,seeds  ribs removed,head of garlic,sprigs egano,dried bay leaves,extravirgin olive oil,kosher salt,sherry vinegar,,,,,,,,,,,,,,,,,,,,,,,,)
+2155	lemony cabbage with mint	(fresh lemon juice,dried mint,,,,kosher salt,,extravirgin olive oil,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2156	chocolate budino with cied walnuts	(sugar,walnuts,kosher salt,bittersweet chocolate wafers (disks,pistoles,fèves;  %% cacao)    chocolate,,heavy cream,whole milk,egg yolks,sugar,kosher salt,olio verde,,sea salt,ground  pepper,;,,,,,,,,,,,,,,,,,,)
+2157	herbrubbed castiron chicken with  sauce	(parsley leaves with tender stems,rosemary leaves,egano leaves,garlic cloves,smashed,extravirgin olive oil,chicken,split in half through breastbone,backbone  wing tips removed,kosher salt,ground pepper,vegetable oil,fresh lemon juice,,,,,,,,,,,,,,,,,,,,,,)
+2158	sea halloumi with peanut dukkah  honey	(skinless raw peanuts,toasted white sesame seeds,sesame seeds,cier seeds,cumin seeds,ground  pepper,s halloumi cheese,,honey,warmed,a spice mill  mtar  pestle,halloumi cheese can be found in greek markets,natural foods  specialty foods stes,supermarkets,online.,,,,,,,,,,,,,,,,,,,,)
+2160	baked cinnamon toast with fruit	(unsalted butter,,,sugar,ground cinnamon,,pinch of kosher salt,apples,,stone fruit,,berries,blueberries,vanilla extract,loaf challah,brioche,pullman,you’ll need,,,,,,,,,,,,,,,,,,,,,,,)
+2161	crispy fish with brown butter sauce  kohlrabi salad	(honey,fresh lemon juice,extravirgin olive oil,,kosher salt,,kohlrabi,,lengthwise,crosswise,green apple,quarters lengthwise,lengthwise,onion,,chilean sea bass  salmon fillets,ground  pepper,blanched hazelnuts,unsalted butter,s,,,,,,,,,,,,,,,,,,,,)
+2162	friedbread zanella with ricotta  herbs	(fresh ricotta,sheep’s milk,extravirgin olive oil,,,sea salt,ground  pepper,heirloom tomatoes,s,shallot,,garlic clove,,basil leaves,parsley leaves with tender stems,wine vinegar,sourdough bread,,,,,,,,,,,,,,,,,,,,)
+2163	roast chicken with bell peppers	(lemon,thyme,any col,shallot,,fresno chile,crosswise,sprigs thyme,,kosher salt,ground pepper,extravirgin olive oil,chicken,,lemon,,,,,,,,,,,,,,,,,,,,,,,,)
+2164	slowcooked winter squash with sage  thyme	(delicata  acron squash,lengthwise,seeds removed,crosswise,head of garlic,sprigs sage,sprigs thyme,extravirgin olive oil,kosher salt,white wine vinegar,,,,,,,,,,,,,,,,,,,,,,,,)
+2165	grapefruit crostatas	(sticks,s,frozen  minutes,allpurpose flour,sugar,kosher salt,distilled white vinegar,semolina flour,kosher salt,sugar,,allpurpose flour,dusting,grapefruit,,vanilla paste  extract,unsalted butter,,melted,egg,egg yolk,,,,,,,,,,,,,,,,)
+2166	slowcooked summer squash with lemon  thyme	(summer squash  zucchini,crosswise,head of garlic,zest of  lemon,removed in wide strips,sprigs thyme,extravirgin olive oil,kosher salt,fresh lemon juice,,,,,,,,,,,,,,,,,,,,,,,,)
+2167	slowcooked eggplant with lemon  fennel seeds	(fairy tale eggplants,lengthwise if,head of garlic,zest of  lemon,removed in wide strips,extravirgin olive oil,fennel seeds,kosher salt,fresh lemon juice,,,,,,,,,,,,,,,,,,,,,,,,)
+2168	stuffed eggplant with crispy beef	(each,extravirgin olive oil,,,kosher salt,ground  pepper,garlic cloves,,onion,parsley leaves with tender stems,wholemilk  yogurt,ground beef,ground cumin,,,,,,,,,,,,,,,,,,,,,)
+2169	shrimp  basil stirfry	(fresno chiles,,garlic cloves,smashed,sugar,fish sauce,vegetable  grapeseed oil,,kosher salt,,shrimp,,,bunch,,,,,,,,,,,,,,,,,,,,,,,)
+2170	radish rainbow salad	(mixed radishes,,kosher salt,lemon,,piave cheese  parmesan,,basil leaves,tn if,extravirgin olive oil,,sea salt,ground  pepper,,,,,,,,,,,,,,,,,,,,,,,)
+2171	plumcardamom crumble with pistachios	(any variety  plums,,lemon zest,fresh lemon juice,cnstarch,packed,kosher salt,,ground cardamom  ground cinnamon,,allpurpose flour,unsalted butter,s,raw pistachios,,,,,,,,,,,,,,,,,,,,,)
+2172	salted watermelon juice	(from  of a  baby seedless watermelon,kosher salt,;,,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2173	summer squash  basil pasta	(olive oil,garlic cloves,,pounds assted summer squashes  zucchini,quarte lengthwise,,kosher salt,teaspoon aleppostyle pepper,,ounces paccheri,ziti,other  tube pasta,ounces parmesan,,,tablespoon fresh lemon juice,basil leaves,,,,,,,,,,,,,,,,,,,,,,,)
+2174	roasted pepper caprese	(mixed bell peppers  chiles (any  than  hot chiles  the peppers will end up spicy,which is delicious as long as that is what you are going ; a hful of shishitos are great in the mix as well),peppers seeded,off of ces  quarters,garlic cloves,lightly crushed,extravirgin olive oil,kosher salt,ground pepper,fresh mozzarella,,white balsamic vinegar,,,,,,,,,,,,,,,,,,,,,,,,)
+2175	summer beans with miso butter	(stick,,white miso,serrano chile,,ginger,,,romano,wax,green beans,extravirgin olive oil,,,,,,,,,,,,,,,,,,,,,,,,,)
+2176	butte tomatoes with ginger	(tablespoons unsalted butter,inch  ginger,,thin matchsticks,scallions,white  pale green parts,dark green parts,pounds tomatoes,,tablespoons   teaspoons white  regular soy sauce,kosher salt,,,,,,,,,,,,,,,,,,,,,,,,,)
+2177	char  raw cn salad	(extravirgin olive oil,,ears of cn,husked,kernels  from cobs,shallot,rings,such as fresno   jalapeño,rings,fresh lime juice,kosher salt,wholemilk greek yogurt,,,cilantro leaves with tender stems,,,,,,,,,,,,,,,,,,,,,,,,)
+2178	summer salmon niçoise	(extravirgin olive oil,,skinless salmon fillet,kosher salt,ground pepper,green beans,cherry tomatoes,shallot,head of butter lettuce,eggs,,dijon mustard,wine vinegar,a pinch of sugar,niçoise  other  olives,,,,,,,,,,,,,,,,,,)
+2179	toi chicken wings	(chicken wings,drumettes  flats separated,kosher salt,fresno chiles,stems removed,,ginger,,,garlic cloves,garam masala,smoked paprika,cilantro leaves with tender stems,,wholemilk yogurt,fresh lemon juice,grill,,,,,,,,,,,,,,,,,,,,)
+2180	tropicobb salad	(extravirgin olive oil,,garlic cloves,lightly crushed,skinless,boneless chicken,s,kosher salt,vadouvan  curry powder,fresh lime juice,tn little gem  green lettuce,avocados,,mangos,,onion,,cherry tomatoes,,sea salt,mild  pepper flakes,,,,,,,,,,,,,,,,,,,,)
+2181	oneskillet lemony chicken with fennel  tomatoes	(,total,kosher salt,extravirgin olive oil,fennel bulb,shallots,heirloom tomato  beefsteak tomato,lemon,ground  pepper,,,,,,,,,,,,,,,,,,,,,,,)
+2182	ba’s best shrimp cocktail	(diamond crystal       mton kosher salt,sugar,lemons,jumbo shellon shrimp,,heinz,lemon zest,fresh lemon juice,prepa hseradish,ground  pepper,tabasco,,,,,,,,,,,,,,,,,,,,,)
+2183	chile crisp	(shallots,,heads of garlic,separated  cloves,,vegetable oil,cinnamon sticks,star anise pods,ginger,,,crushed  pepper flakes,soy sauce,sugar,,,,,,,,,,,,,,,,,,,,,,)
+2184	celery	(green bean,tofu salad with chile crisp,celery stalks,,on a steep diagonal   s,leaves,green beans,,on a steep diagonal  bitesize s,block firm tofu,braised,thin batons,unsalted,roasted peanuts,fresh lime juice,chile crisp,,sea salt,,,,,,,,,,,,,,,,,,,,,,,,)
+2185	grilled salmon with lemonsesame sauce	(salmon fillets,pin bones removed,,extravirgin olive oil,grill,kosher salt,lemon,shallot,,sesame seeds,honey,toasted sesame oil,ground  pepper,tn basil leaves,,,,,,,,,,,,,,,,,,,,,)
+2186	fruit swiches	(heavy cream,sugar,a pinch of kosher salt,jaese milk bread,kiwi,,crosswise    rounds,strawberries,,lengthwise,yellow peach   mango,x strips,,,,,,,,,,,,,,,,,,,,,,,,)
+2187	frozen margarita pie	(unsalted butter,graham crackers,sugar,kosher salt.,heavy cream,limes,,can sweetened condensed milk,tequila blanco,,,,,,,,,,,,,,,,,,,,,,,)
+2188	honeychipotle shrimp tacos	(adobo sauce from  can chipotle chiles in adobo,honey,shrimp,,,kosher salt,mayonnaise,garlic clove,head of green cabbage,cilantro leaves with tender stems,onion,lime,cn ttillas,vegetable oil,,,,,,,,,,,,,,,,,,,)
+2189	cold beef tenderloin with tomatoes  cucumbers	(extravirgin olive oil,,beef tenderloin,whole  peppercns,crushed,kosher salt,,rounds,mini seedless  persian cucumbers,rounds,basil leaves,,sea salt,ground  pepper,,,,,,,,,,,,,,,,,,,,,)
+2190	rice noodles al pomodo with chili oil	(kosher salt,wide rice noodles,extravirgin olive oil,garlic cloves,,fresno chile   jalapeño,,sprigs basil,tn leaves,s cherry tomatoes,if,,,,,,,,,,,,,,,,,,,,,,,,)
+2191	coconut rice noodles with ginger  turmeric	(kosher salt,rice vermicelli,virgin coconut oil  vegetable oil,onion,,garlic cloves,,ginger,,,ground turmeric,ground  pepper,,. can unsweetened coconut milk,honey,fish sauce,,,,,,,,,,,,,,,,,,,,)
+2192	cold roast salmon with smashed green bean salad	(whole side of salmon,extravirgin olive oil,,,ground  pepper,kosher salt,,,crushed  pepper flakes,,fresh lemon juice,green beans,,bunch radishes,french breakfast,,salted,roasted pistachios,sea salt,,,,,,,,,,,,,,,,,,,,,)
+2193	curried tofu wraps	(scallions,garlic cloves,,ginger,,,virgin coconut oil  vegetable oil,thai  curry paste,firm tofu,,s,unsweetened coconut milk,kosher salt,fresh lime juice,fresno chile,,bunch collard greens,leaves  lengthwise,ribs  stems removed,cove,,cilantro leaves with tender stems,dang iginal coconut chips  toasted unsweetened coconut flakes,,,,,,,,,,,,,,,,,,)
+2194	ricotta na cotta with nectarines  honey	(,,wholemilk fresh ricotta,powde sugar,vanilla extract,kosher salt,halfhalf,,nectarines,,,,,,,,,,,,,,,,,,,,,,,,)
+2195	grilled pk chops with plums	(halloumi,lemon,extravirgin olive oil,,,honey,,,kosher salt,ground pepper,,,lemon,,seeds removed,halloumi cheese,,tn egano leaves,,,,,,,,,,,,,,,,,,,,,,,)
+2196	yellow tomato bloody mary	(yellow tomatoes,ced,,celery stalk,,celery heart stalks with leaves,fresh lemon juice,castelvetrano olive brine,olives,hseradish,cholula,wcestershire sauce,sugar,kosher salt,,,lemon wedge,gin,ground  pepper,mild  pepper flakes,,,,,,,,,,,,,,,,,,)
+2197	watermelon with lime dressing  peanuts	(baby seedless watermelon,fresh lime juice,fish sauce,sugar,sprigs basil,leaves,salted,roasted peanuts,extravirgin olive oil,sea salt,,,,,,,,,,,,,,,,,,,,,,,)
+2198	peanut rice noodles with pk  collard greens	(kosher salt,regularwidth rice stick noodles,smooth natural peanut butter,soy sauce,unseasoned rice vinegar,sugar,crushed  pepper flakes,vegetable oil,ground pk,ginger,,matchsticks,garlic cloves,,bunch collard greens,ribs  stems removed,leaves,,,,,,,,,,,,,,,,,,,)
+2199	plum salad with  pepper  parmesan	(sherry vinegar   wine vinegar,honey,cracked  pepper,,,,green plums,,,shaved parmesan  pecino,,extravirgin olive oil,sea salt,,,,,,,,,,,,,,,,,,,,,,,,)
+2200	lemony yogurt sauce	(fresh lemon juice,garlic clove,,kosher salt,ground  pepper,wholemilk greek yogurt,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2201	antipasto salad	(garlic clove,,extravirgin olive oil,wine vinegar,crushed dried egano,pinch of crushed  pepper flakes,italian long sweet peppers,rounds,onion,,rinsed,can artichoke hearts,,,,ball fresh mozzarella,tn  s,salami,fennel,,kosher salt,ground pepper,lemon,basil leaves,,,,,,,,,,,,,,,,,,)
+2202	sambal shrimp lettuce wraps	(such as sambal oelek,honey,unseasoned rice vinegar,toasted sesame oil,,shrimp,kosher salt,vegetable oil,persian cucumbers,rounds,sea salt,heads of bibb lettuce,leaves separated,cove,,mint sprigs,crushed salted,roasted peanuts,,,,,,,,,,,,,,,,,,,)
+2203	spicy steak salad wraps	(garlic cloves,,sugar,from a can of chipotles in adobo,,fresh lime juice,,extravirgin olive oil,,skirt steak,crosswise   equal s,kosher salt,,ground  pepper,greek yogurt,head of iceberg lettuce,leaves separated,cove,,radishes,,,cove,,,lightly crushed cn nuts,,,,,,,,,,,,,,,,,,)
+2204	skillet cod	(clams,cn with parsley,skinless cod fillet,s,,kosher salt,ground pepper,allpurpose flour,extravirgin olive oil,,shallot,,white wine,littleneck clams,,ears of cn,,unsalted butter,s,parsley,,,,,,,,,,,,,,,,,,,,,)
+2205	chicken cobb salad	(eggs,,,sherry vinegar   wine vinegar,dijon mustard,sugar,extravirgin olive oil,kosher salt,ground pepper,tn frisée,rotisserie chicken,,beefsteak  heirloom tomatoes,,avocado,quarte,,,,,,,,,,,,,,,,,,,,)
+2206	vegetable marinade	(extravirgin olive oil,sherry vinegar   wine vinegar,kosher salt,honey,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+2207	fiery green tahini sauce	(lemons,serrano chiles,garlic cloves,crushed,parsley,extravirgin olive oil,tahini,kosher salt,,,,,,,,,,,,,,,,,,,,,,,,)
+2208	blt wraps with hseradish mayonnaise	(countrystyle bread,dayold,,bacon,kosher salt,,mayonnaise,lemon zest,fresh lemon juice,prepa hseradish,ground  pepper,heads of little gem lettuce,leaves separated,cove,,cherry tomatoes,,basil leaves,,,,,,,,,,,,,,,,,,,,)
+2209	cold paprikagrilled chicken with marinated bell peppers	(grill,,,yellow bell peppers,hot smoked sish paprika,kosher salt,ground  pepper,,bonein chicken breasts,,drumsticks,vegetable marinade,egano leaves,,,,,,,,,,,,,,,,,,,,,,,)
+2210	cold roast lamb with marinated eggplant	(garlic cloves,rosemary,cumin seeds,kosher salt,,extravirgin olive oil,,,boneless leg of lamb,,,ground  pepper,shallots,,vegetable marinade,parsley leaves with tender stems,sea salt,,,,,,,,,,,,,,,,,,,)
+2211	hotsmoked salmon with salted yogurt  fennel	(wholemilk greek yogurt,fresh lemon juice,,kosher salt,whole grain mustard,capers,extravirgin olive oil,,,fennel bulb,hotsmoked salmon,ground  pepper,,,,,,,,,,,,,,,,,,,,,,)
+\.
+
+
+--
+-- Name: recipes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.recipes_id_seq', 2211, true);
+
+
+--
+-- Data for Name: recipetable; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.recipetable (id, recipeid, recipename, ingredients, instructions) FROM stdin;
+1	101010	haburger	{meat,lettuce,bun,cheese}	put it all together
+\.
+
+
+--
+-- Name: recipetable_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.recipetable_id_seq', 1, true);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: fjstinar
+--
+
+COPY public.users (id, username, password) FROM stdin;
+1	frank	liquid
+2	dog	bark
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: fjstinar
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+
+
+--
+-- Name: recipes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.recipes
+    ADD CONSTRAINT recipes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: fjstinar
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

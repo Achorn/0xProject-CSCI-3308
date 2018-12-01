@@ -1,1 +1,1 @@
-console.log("Chrome extension go?");
+console.log("Chrome extension go red?");

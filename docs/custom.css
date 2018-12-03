@@ -3,13 +3,6 @@
     box-shadow: 0 0 0 1px #ff7f50;
 }
 
-.btn-primary{
-    background-color:lightsalmon;
-}
-
-.btn-secondary{
-    background-color: #ff7f50;
-}
 
 body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 

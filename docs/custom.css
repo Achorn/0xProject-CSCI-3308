@@ -3,14 +3,6 @@
     box-shadow: 0 0 0 1px #ff7f50;
 }
 
-.btn-primary{
-    background-color:lightsalmon;
-}
-
-.btn-secondary{
-    background-color: #ff7f50;
-}
-
 
 body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 .webTitle{
@@ -51,6 +43,14 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
   color: #ffffff;
   font-weight: bold;
 }
+.btn-primary2{
+  color: #ffffff;
+  background: #f48642;
+  font-weight: bold;
+}
+.btn-danger{
+  font-weight: bold;
+}
 .forgot {
   text-align: left; margin-bottom:30px;
 }
@@ -58,11 +58,6 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
   color: #ffffff;
   font-size: 14px;
   margin: auto;
-}
-.btn-primary2{
-  color: #ffffff;
-  background: #f48642;
-  font-weight: bold;
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}

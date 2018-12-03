@@ -20,10 +20,9 @@
     <title>0x Group Project</title>
 </head>
 <body>
-  <h1 class="text-center">Recipe Crawler</h1>
-  <div class = container>
+  <h2 class="text-center webTitle">Recipe Crawler</h2>
+  <div class="container">
     <div class="login-container" id="login-container">
-      <div id="login">
       <div class="form-group">
           <input id="email" type="email" class="form-control"  placeholder="Email Address">
       </div>
@@ -32,14 +31,28 @@
       </div>
           <center>
       <button id="loginButton" type="submit" class="btn btn-primary">Login</button>
-      <button id="signUpButton" type="submit" class="btn btn-info">Sign Up</button>
+      <button id="signUpButton" type="submit" class="btn btn-primary2">Sign Up</button>
         </center>
-      </div>
     </div>
-    <div class="logout-container" id="logout-container">
-      <div id="logOut">
-        <button id="logOutButton" type="submit" class="btn btn-danger">Log Out</button>
+
+
+
+    <div class="add-ingredient-container" id="add-ingredient-container">
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <input id="ingredient" type="text" class="form-control" placeholder="Ingredient" aria-describedby="addIngredientButton">
+          <div class="input-group-append">
+            <button id="addIngredientButton" class="btn btn-primary" type="button" >Add</button>
+          </div>
+        </div>
       </div>
+
+    </div>
+
+    <div class="logout-container" id="logout-container">
+      <center>
+        <button id="logOutButton" type="submit" class="btn btn-danger">Log Out</button>
+      </center>
     </div>
      <br>
 

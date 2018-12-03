@@ -4,7 +4,10 @@
 }
 
 body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
-
+.webTitle{
+  font-weight: bold;
+  color:#444444;
+}
 .form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
 .panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
@@ -33,15 +36,11 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
   font-size: 14px;
   text-decoration: underline;
 }
-.login-form  .btn.btn-primary {
+ .btn-primary {
   background: #f0ad4e none repeat scroll 0 0;
   border-color: #f0ad4e;
   color: #ffffff;
-  font-size: 14px;
-  max-width: 100%;
-  height: 50px;
-  line-height: 50px;
-  padding: 0;
+  font-weight: bold;
 }
 .forgot {
   text-align: left; margin-bottom:30px;
@@ -51,10 +50,10 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
   font-size: 14px;
   margin: auto;
 }
-.login-form .btn.btn-primary.reset {
-  background: #ff9900 none repeat scroll 0 0;
+.btn-primary2{
+  color: #ffffff;
+  background: #f48642;
+  font-weight: bold;
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
-
-  

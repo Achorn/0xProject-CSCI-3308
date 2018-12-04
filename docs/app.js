@@ -75,5 +75,4 @@
   const config = {
     //YOUR CONFIGS
   };
-
-  
+}());

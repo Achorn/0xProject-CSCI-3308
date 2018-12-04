@@ -61,3 +61,13 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
+
+.table-hover{
+    width:90%;
+    align-content: center;
+    text-align: center;
+}
+
+.table{
+    margin:auto;
+}

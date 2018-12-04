@@ -70,3 +70,10 @@
 });
 
 })();
+
+(function() {
+  const config = {
+    //YOUR CONFIGS
+  };
+
+  

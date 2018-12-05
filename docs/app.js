@@ -65,12 +65,14 @@
       userID = firebase.auth().currentUser.uid;
       ingredientDisplay.child(userID + "/Ingredients").on("child_added", snap => {
         console.log(snap.val());
-        // var ingredients = snap.child(snap.key).child("Ingredients").val();
-        // console.log(ingredients);
-        div = document.createElement('Div');
-        div.innerHTML = snap.val();
-        div.style = "color: red"
-        document.getElementById("ingredient-body").appendChild(div);
+        // div = document.createElement('Div');
+        // div.innerHTML = snap.val();
+        // div.style = "color: #444444"
+        // document.getElementById("ingredient-body").appendChild(div);
+        var ingredient = snap.val();
+        $("#ingredient-body").append("<tr><td>"+ ingredient + "</td><td><button>X</button></td></tr>");
+        // document.getElementById("ingredient-body")
+        //         .append("<tr><td>"+ ingredient + "<td/><td><button>remove</button></td></tr>");
       });
       // ...
     } else {

@@ -12,6 +12,8 @@
 
   // Get a reference to the database service
   var database = firebase.database();
+  var ingredientDisplay = firebase.database().ref().child("users");
+  var userID = ""
 
   //logIn
   const txtEmail = document.getElementById('email');
@@ -53,21 +55,34 @@
     promise.catch(e => alert(e.message));
   });
 
+
   firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    logInContainer.style.display= "none"
-    logOutContainer.style.display= ""
-    addIngredientContainer.style.display= ""
-    // ...
-  } else {
-    // User is signed out.
-    logInContainer.style.display= ""
-    logOutContainer.style.display= "none"
-    addIngredientContainer.style.display= "none"
-    // ...
-  }
-});
+    if (user) {
+      // User is signed in.
+      logInContainer.style.display= "none";
+      logOutContainer.style.display= "";
+      addIngredientContainer.style.display= "";
+      userID = firebase.auth().currentUser.uid;
+      ingredientDisplay.child(userID + "/Ingredients").on("child_added", snap => {
+        console.log(snap.val());
+        // var ingredients = snap.child(snap.key).child("Ingredients").val();
+        // console.log(ingredients);
+        div = document.createElement('Div');
+        div.innerHTML = snap.val();
+        div.style = "color: red"
+        document.getElementById("ingredient-body").appendChild(div);
+      });
+      // ...
+    } else {
+      // User is signed out.
+      logInContainer.style.display= "";
+      logOutContainer.style.display= "none";
+      addIngredientContainer.style.display= "none";
+      userID = "";
+      document.getElementById("ingredient-body").innerHTML = ""
+      // ...
+    }
+  });
 
 })();
 

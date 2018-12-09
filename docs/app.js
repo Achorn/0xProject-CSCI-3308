@@ -38,6 +38,12 @@
     firebase.database().ref('users/' + firebase.auth().currentUser.uid + "/Ingredients").push(txtIngredient.value);
   });
 
+  document.getElementById("ingredient-body").addEventListener("click", function(e){
+    if(e.target && e.target.nodeName == "BUTTON"){
+      firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/Ingredients/' + e.target.id).remove();
+    }
+  });
+
   signUpButton.addEventListener('click', e => {
     const email = txtEmail.value;
     const pswd = txtPassword.value;
@@ -70,10 +76,15 @@
         // div.style = "color: #444444"
         // document.getElementById("ingredient-body").appendChild(div);
         var ingredient = snap.val();
-        $("#ingredient-body").append("<tr><td>"+ ingredient + "</td><td><button>X</button></td></tr>");
+        $("#ingredient-body").append("<tr><td>"+ ingredient + "</td><td><button id='" + snap.key + "'>X</button></td></tr>");
         // document.getElementById("ingredient-body")
         //         .append("<tr><td>"+ ingredient + "<td/><td><button>remove</button></td></tr>");
       });
+      ingredientDisplay.child(userID + "/Ingredients").on("child_removed", snap => {
+        console.log(snap.key);
+        $("#" + snap.key).closest('tr').remove();
+      });
+
       // ...
     } else {
       // User is signed out.
@@ -87,6 +98,7 @@
   });
 
 })();
+
 
 (function() {
   const config = {

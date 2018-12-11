@@ -20,7 +20,8 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
 .panel p { color:#ff7f50; font-size:14px; margin-bottom:30px; line-height:24px;}
 .login-form .form-control {
   background: #f7f7f7 none repeat scroll 0 0;
-  border: 1px solid #ff7f50;
+  background-image: url("https://isorepublic.com/wp-content/uploads/2017/09/background-kitchen.jpg");
+    border: 1px solid #ff7f50;
   border-radius: 4px;
   font-size: 14px;
   height: 50px;

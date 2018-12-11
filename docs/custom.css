@@ -3,7 +3,13 @@
     box-shadow: 0 0 0 1px #ff7f50;
 }
 
+.navbar{
+    background-color:whitesmoke;
+}
 
+#ingredient{
+    background-color:whitesmoke;
+}
 body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 .webTitle{
   font-weight: bold;

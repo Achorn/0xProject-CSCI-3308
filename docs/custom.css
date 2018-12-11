@@ -17,6 +17,11 @@
         max-width: 15rem;
         padding: 0 4px;    
     }
+
+.ingredient-body{
+    background-color: rgba(245,245,245,.9);
+    max-width: 20%;
+}
 .card-body{
      background-color: rgba(245,245,245,.9);
 }
@@ -114,8 +119,8 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
 body{
   padding-top:50px;
   background-color:whitesmoke;
- background-size:cover;
-    background-repeat: no-repeat;
+/* background-size:cover;*/
+background-repeat: no-repeat;
     background-position: center;
 }
 

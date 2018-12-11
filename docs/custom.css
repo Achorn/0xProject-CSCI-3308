@@ -7,6 +7,17 @@
     background-color:whitesmoke;
 }
 
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+.custom {
+       flex: 10rem; 
+        max-width: 15rem;
+        padding: 0 4px;
+    }
+
 #ingredient{
     background-color:whitesmoke;
 }

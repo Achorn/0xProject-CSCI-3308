@@ -22,9 +22,13 @@
 }
 .table-striped{
     flex:auto;
-    background-color: rgba(245,245,245,.9)
+    background-color: rgba(245,245,245,.9);
 }
 
+.about{
+    flex: auto;
+    background-color: rgba(245,245,245,.9);
+}
 
 #ingredient{
     background-color:whitesmoke;

@@ -42,7 +42,7 @@
     var ref = database.ref('recipes');
     ref.on('value', gotData, errData);
     function gotData(data) {
-      console.log(data);
+      console.log(data.val());
     }
     function errData(err) {
       console.log('Error!');

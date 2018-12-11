@@ -36,20 +36,6 @@
 
   addIngredientButton.addEventListener('click', e => {
     firebase.database().ref('users/' + firebase.auth().currentUser.uid + "/Ingredients").push(txtIngredient.value);
-    var recipeRef = firebase.database().ref('recipes/');
-    database = firebase.database();
-
-    var ref = database.ref('recipes');
-    ref.on('value', gotData, errData);
-    function gotData(data) {
-      console.log(data.val());
-    }
-    function errData(err) {
-      console.log('Error!');
-      console.log(err);
-
-    }
-
   });
 
   document.getElementById("ingredient-body").addEventListener("click", function(e){

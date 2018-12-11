@@ -18,6 +18,10 @@
         padding: 0 4px;
     }
 
+.table-striped{
+    flex:auto;
+}
+
 #ingredient{
     background-color:whitesmoke;
 }

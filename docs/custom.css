@@ -15,17 +15,22 @@
 .custom {
        flex: 10rem; 
         max-width: 15rem;
-        padding: 0 4px;
+        padding: 0 4px;    
     }
-
+.card-body{
+     background-color: rgba(245,245,245,.9);
+}
 .table-striped{
     flex:auto;
+    background-color: rgba(245,245,245,.9)
 }
 
 
 #ingredient{
     background-color:whitesmoke;
 }
+
+
 body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 .webTitle{
   font-weight: bold;
@@ -104,8 +109,12 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
 
 body{
   padding-top:50px;
-
+  background-color:whitesmoke;
+ background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
+
 
 .card{
     max-height: 10rem;

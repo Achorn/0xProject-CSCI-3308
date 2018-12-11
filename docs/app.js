@@ -13,6 +13,7 @@
   // Get a reference to the database service
   var database = firebase.database();
   var ingredientDisplay = firebase.database().ref().child("users");
+  var recipeDisplay = firebase.database().ref().child("recipes");
   var userID = ""
 
   //logIn
@@ -70,20 +71,58 @@
       addIngredientContainer.style.display= "";
       userID = firebase.auth().currentUser.uid;
       ingredientDisplay.child(userID + "/Ingredients").on("child_added", snap => {
-        console.log(snap.val());
-        // div = document.createElement('Div');
-        // div.innerHTML = snap.val();
-        // div.style = "color: #444444"
-        // document.getElementById("ingredient-body").appendChild(div);
         var ingredient = snap.val();
         $("#ingredient-body").append("<tr><td>"+ ingredient + "</td><td><button id='" + snap.key + "'>X</button></td></tr>");
-        // document.getElementById("ingredient-body")
-        //         .append("<tr><td>"+ ingredient + "<td/><td><button>remove</button></td></tr>");
       });
       ingredientDisplay.child(userID + "/Ingredients").on("child_removed", snap => {
-        console.log(snap.key);
+        //console.log(snap.key);
         $("#" + snap.key).closest('tr').remove();
       });
+
+
+
+      var includedRecipes = [];
+      recipeDisplay.on("child_added", snap =>{
+
+        var website = (snap.val()[0]);
+
+        //add users ingredients to array
+        var userIngredientsArray = [];
+        ingredientDisplay.child(userID + "/Ingredients").on("child_added", snap => {
+          var userIngredient = snap.val();
+          userIngredientsArray.push(userIngredient);
+        });
+
+        //for each recipe in database, add to array then filter out each recipe
+        //that doesnt belong one at a time
+        var recipeArray = (snap.val());
+        includedRecipes.push([snap.key,website]);
+        recipeArray.shift(); //remove website
+
+        //loop for every ingredient a user inputs
+        for(var i=0; i < userIngredientsArray.length; i++){
+          userIngredient = userIngredientsArray[i];
+          //console.log(userIngredient);
+          var found = false;
+
+          //loop for searching users ingredient with recipe ingredients
+          recipeArray.forEach(function(recIngredient, recIndex){
+            //console.log(RecIngrrdient);
+            var check = recIngredient.search(userIngredient);
+            if (check != -1) {
+              // console.log("user ingredient", userIngredient);
+              // console.log("recipe ingredient", recIngredient);
+              found = true;
+            }
+          });
+          //if ingredient was not found
+          if(found === false){
+            includedRecipes.pop();
+            break;
+          }
+        }
+      });
+      console.log("Included recipes", includedRecipes)
 
       // ...
     } else {

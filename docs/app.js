@@ -121,9 +121,13 @@
             break;
           }
         }
-      });
-      console.log("Included recipes", includedRecipes)
+        if(found === true){
+          var recLink = includedRecipes[includedRecipes.length - 1][0].link(includedRecipes[includedRecipes.length - 1][1]);
 
+        $("#recipe-body").append("<tr><td>"+ recLink +"</td></tr>");
+        }
+      });
+      console.log("Included recipes", includedRecipes);
       // ...
     } else {
       // User is signed out.

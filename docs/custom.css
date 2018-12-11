@@ -19,25 +19,35 @@
     }
 
 .ingredient-body{
-    background-color: rgba(245,245,245,.9);
+    background-color: rgba(245,245,245,.7);
     max-width: 20%;
+    border-radius: 15px;
 }
 
 .recipe-body{
-    background-color: rgba(245,245,245,.9);
+    background-color: rgba(245,245,245,.7);
     max-width: 50%;
+    border-radius: 15px;
 }
 .card-body{
-     background-color: rgba(245,245,245,.9);
+     background-color: rgba(245,245,245,.7);
+     border-radius: 15px;
+}
+
+.card-img-top{
+    border-radius: 15px;
 }
 .table-striped{
     flex:auto;
-    background-color: rgba(245,245,245,.9);
+    background-color: rgba(245,245,245,.7);
+    border-radius: 15px;
+    
 }
 
 .about{
     flex: auto;
-    background-color: rgba(245,245,245,.9);
+    background-color: rgba(245,245,245,.7);
+    border-radius: 15px;
 }
 
 #ingredient{

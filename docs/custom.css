@@ -81,3 +81,12 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
 .text-center{
     text-align: center;
 }
+
+body{
+  padding-top:50px;
+
+}
+
+.card{
+    max-height: 10rem;
+}

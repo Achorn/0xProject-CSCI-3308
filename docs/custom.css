@@ -20,8 +20,7 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
 .panel p { color:#ff7f50; font-size:14px; margin-bottom:30px; line-height:24px;}
 .login-form .form-control {
  background-image: url("https://i.imgur.com/Wg9Pf9L.jpg");{
-    max-width: 100%;
-    height: auto;
+    background-size: 1920px 1080px;
  }
     
     border: 1px solid #ff7f50;

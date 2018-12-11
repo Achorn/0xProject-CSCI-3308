@@ -22,6 +22,11 @@
     background-color: rgba(245,245,245,.9);
     max-width: 20%;
 }
+
+.recipe-body{
+    background-color: rgba(245,245,245,.9);
+    max-width: 50%;
+}
 .card-body{
      background-color: rgba(245,245,245,.9);
 }

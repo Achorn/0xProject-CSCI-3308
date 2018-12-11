@@ -19,7 +19,6 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
 .panel h2{ color:#ff7f50; font-size:18px; margin:0 0 8px 0;}
 .panel p { color:#ff7f50; font-size:14px; margin-bottom:30px; line-height:24px;}
 .login-form .form-control {
-  background: #f7f7f7 none repeat scroll 0 0;
   background-image: url("http://saltings.dk/wp-content/uploads/sites/31/2018/05/iStock-517488868.jpg");
     border: 1px solid #ff7f50;
   border-radius: 4px;
@@ -28,7 +27,8 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
   line-height: 50px;
 }
 .main-div {
-  background-image: url("http://saltings.dk/wp-content/uploads/sites/31/2018/05/iStock-517488868.jpg");
+  
+  background: #f7f7f7 none repeat scroll 0 0;
   border-radius: 2px;
   margin: 10px auto 30px;
   max-width: 38%;

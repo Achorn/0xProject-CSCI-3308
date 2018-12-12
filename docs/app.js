@@ -72,7 +72,7 @@
       userID = firebase.auth().currentUser.uid;
       ingredientDisplay.child(userID + "/Ingredients").on("child_added", snap => {
         var ingredient = snap.val();
-        $("#ingredient-body").append("<tr><td>"+ ingredient + "</td><td><button class='deleteIngredientButton' id='" + snap.key + "'>X</button></td></tr>");
+        $("#ingredient-body").append("<tr><td>"+ ingredient + "</td><td><button id='" + snap.key + "'>X</button></td></tr>");
       });
       ingredientDisplay.child(userID + "/Ingredients").on("child_removed", snap => {
         //console.log(snap.key);

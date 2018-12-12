@@ -1,3 +1,7 @@
+
+* {
+  color: #444444;
+}
 .active-salmon-4 input[type=text]:focus:not([readonly]) {
     border: 1px solid #ff7f50;
     box-shadow: 0 0 0 1px #ff7f50;
@@ -55,6 +59,8 @@
 }
 
 .deleteIngredientButton{
+  border: none;
+  color: #444444;
 }
 
 body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}

@@ -13,9 +13,9 @@
     padding: 0 4px;
 }
 .custom {
-       flex: 10rem; 
+       flex: 10rem;
         max-width: 15rem;
-        padding: 0 4px;    
+        padding: 0 4px;
     }
 
 .ingredient-body{
@@ -41,7 +41,7 @@
     flex:auto;
     background-color: rgba(245,245,245,.7);
     border-radius: 15px;
-    
+
 }
 
 .about{
@@ -54,6 +54,8 @@
     background-color:whitesmoke;
 }
 
+.deleteIngredientButton{
+}
 
 body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 .webTitle{
@@ -67,7 +69,7 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
  background-image: url("https://i.imgur.com/Wg9Pf9L.jpg");{
     background-size: 1920px 1080px;
  }
-    
+
     border: 1px solid #ff7f50;
   border-radius: 4px;
   font-size: 14px;
@@ -75,7 +77,7 @@ body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; backgr
   line-height: 50px;
 }
 .main-div {
-  
+
   background: #f7f7f7 none repeat scroll 0 0;
   border-radius: 2px;
   margin: 10px auto 30px;

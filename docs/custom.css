@@ -22,6 +22,7 @@
         padding: 0 4px;
     }
 
+/*
 .ingredient-body{
     background-color: rgba(245,245,245,.7);
     max-width: 20%;
@@ -33,8 +34,9 @@
     max-width: 50%;
     border-radius: 15px;
 }
+*/
 .card-body{
-     background-color: rgba(245,245,245,.7);
+/*     background-color: rgba(245,245,245,.7);*/
      border-radius: 15px;
 }
 
@@ -43,15 +45,15 @@
 }
 .table-striped{
     flex:auto;
-    background-color: rgba(245,245,245,.7);
-    border-radius: 15px;
+/*    background-color: rgba(245,245,245,.7);*/
+/*    border-radius: 15px;*/
 
 }
 
 .about{
     flex: auto;
-    background-color: rgba(245,245,245,.7);
-    border-radius: 15px;
+/*    background-color: rgba(245,245,245,.7);*/
+/*    border-radius: 15px;*/
 }
 
 #ingredient{
@@ -143,7 +145,7 @@ body{
   padding-top:50px;
   background-color:whitesmoke;
 /* background-size:cover;*/
-background-repeat: no-repeat;
+background-repeat:repeat;
     background-position: center;
 }
 

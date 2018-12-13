@@ -1,6 +1,8 @@
-
+h1{
+    color:#073763;
+}
 * {
-  color: #444444;
+  color: #073763;
 }
 .active-salmon-4 input[type=text]:focus:not([readonly]) {
     border: 1px solid #ff7f50;
@@ -33,6 +35,9 @@
     max-width: 50%;
     border-radius: 15px;
 }
+
+
+
 .card-body{
 /*     background-color: rgba(245,245,245,.7);*/
      border-radius: 15px;
@@ -66,7 +71,7 @@
 body#LoginForm{ background-color:whitesmoke; background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 .webTitle{
   font-weight: bold;
-  color:#444444;
+  color:#073763;
 }
 .form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#ff7f50; font-size:18px; margin:0 0 8px 0;}

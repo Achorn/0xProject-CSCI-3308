@@ -22,7 +22,6 @@
         padding: 0 4px;
     }
 
-/*
 .ingredient-body{
     background-color: rgba(245,245,245,.7);
     max-width: 20%;
@@ -34,7 +33,6 @@
     max-width: 50%;
     border-radius: 15px;
 }
-*/
 .card-body{
 /*     background-color: rgba(245,245,245,.7);*/
      border-radius: 15px;
